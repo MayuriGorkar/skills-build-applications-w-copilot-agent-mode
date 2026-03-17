@@ -26,8 +26,13 @@ router.register(r'activities', ActivityViewSet)
 router.register(r'workouts', WorkoutViewSet)
 router.register(r'leaderboard', LeaderboardViewSet)
 
+
+# Use /api/ as the prefix for all API endpoints
+api_urlpatterns = [
+    path('api/', include(router.urls)),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_root, name='api_root'),
-    path('', include(router.urls)),
-]
+] + api_urlpatterns
